@@ -59,6 +59,9 @@
       }
     )
     // {
-      overlays.default = self: pkgs: { ds1302 = self.packages."${pkgs.system}".default; };
+      overlays.default = final: pkgs: { ds1302 = self.packages."${pkgs.system}".default; };
+      nixosModules.default = {
+        nixpkgs.overlays = [ self.overlays.default ];
+      };
     };
 }
